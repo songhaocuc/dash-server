@@ -9,7 +9,7 @@
     <script src="/js/dash/dash.all.min.js"></script>
     <script src="/js/jquery-3.3.1.min.js"></script>
     <!--<script src="/js/abr/LowestBitrateRule.js"></script>-->
-    <script src="/js/abr/RequestBitrateRule.js"></script>
+    <script src="/js/abr/<%= rule %>.js"></script>
     <!--<script src="/js/abr/DownloadRatioRule.js"></script>-->
     <script>
         function init() {
@@ -25,7 +25,7 @@
 
             // add my custom quality switch rule. Look at LowestBitrateRule.js to know more
             // about the structure of a custom rule
-            player.addABRCustomRule('qualitySwitchRules', 'RequestBitrateRule', RequestBitrateRule);
+            player.addABRCustomRule('qualitySwitchRules', '<%= rule %>', <%= rule %>);
             // player.addABRCustomRule('qualitySwitchRules', 'DownloadRatioRule', DownloadRatioRule);
             player.initialize(video, url, true);
         }

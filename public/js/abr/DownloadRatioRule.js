@@ -56,7 +56,7 @@ function DownloadRatioRuleClass() {
     }
 
     function getMaxIndex(rulesContext) {
-
+        console.log('usegetmax');
         let mediaType = rulesContext.getMediaInfo().type;
 
         let metricsModel = MetricsModel(context).getInstance();

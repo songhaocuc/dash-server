@@ -41,17 +41,16 @@ function RequestBitrateRuleClass() {
         };
         console.log(params);
         var resultBitrate = 0;
-        // $.ajax({
-        //     type        :'POST',
-        //     url         :'/ab',
-        //     async       :false,
-        //     data        :{'data':JSON.stringify(params)},
-        //     success     :function (result) {
-        //         resultBitrate = parseInt(result);
-        //         console.log(result);
-        //     }
-        // });
-        resultBitrate = 0;
+        $.ajax({
+            type        :'POST',
+            url         :'/ab',
+            async       :false,
+            data        :{'data':JSON.stringify(params)},
+            success     :function (result) {
+                resultBitrate = parseInt(result);
+                console.log(result);
+            }
+        });
         // // Get current bitrate
         // let streamController = StreamController(context).getInstance();
         // let abrController = rulesContext.getAbrController();
@@ -61,7 +60,7 @@ function RequestBitrateRuleClass() {
         // if (current === 0) {
         //     return SwitchRequest(context).create();
         // }
-        console.log(resultBitrate);
+
         // Ask to switch to the lowest bitrate
         let switchRequest = SwitchRequest(context).create();
         switchRequest.quality = resultBitrate;
