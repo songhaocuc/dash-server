@@ -1,16 +1,62 @@
-var MongoClient = require("mongodb").MongoClient;
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/dashserver',
+    {useNewUrlParser:true});
 
-function _connectDB(callback) {
-    var url = 'mongodb://localhost:27017/dashserver';
-    MongoClient.connect(url, function (err, db) {
-        callback(err, db);
-    })
+var video = require('./Video');
+var abrRule = require('./ABRRule');
+
+var db;
+
+/////////////////////
+// video
+/////////////////////
+//callback(err, count)
+function countVideoByType(type, callback) {
+    video.countByType(type, callback);
+}
+//callback(err, docs)
+function findVideoByType(type, callback){
+    video.findByType(type, callback);
+}
+//callback(err, docs)
+function findVideoByTypeWithScope(options, callback){
+    video.findByTypeWithScope(options, callback);
+}
+//callback(err, doc)
+function findVideoById(id, callback){
+    video.findByVideoId(id, callback);
+}
+//callback(err, object)
+function createNewVideo(object, callback){
+    video.create(object, callback);
+}
+//callback(err, doc)
+function updateVideoById(id, update, callback){
+    video.update({id: id}, update, callback);
+}
+//callback(err)
+function deleteVideoById(id, callback){
+    video.deleteOne({id: id}, callback);
 }
 
-exports.insertOne = function (collectionName, json, callback) {
-    _connectDB(function (err, db) {
-        db.collection(collectionName).insertOne(json, function (err, db) {
-            callback(err, db);
-        })
-    })
+///////////////////////
+// abr rules
+////////////////////////
+
+
+///////////////////////
+// settings
+///////////////////////
+
+// db API
+db = {
+    countVideoByType: countVideoByType,
+    findVideoByType: findVideoByType,
+    findVideoByTypeWithScope: findVideoByTypeWithScope,
+    findVideoById: findVideoById,
+    createNewVideo: createNewVideo,
+    updateVideoById: updateVideoById,
+    deleteVideoById: deleteVideoById
 };
+
+module.exports = db;

@@ -5,13 +5,99 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Home</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/video.css" rel="stylesheet">
+    <link href="/css/docs.min.css" rel="stylesheet">
 </head>
 <body>
-<%include component/header.ejs%>
-<a href="/player">player</a>
-<a href="/abr-test/RequestBitrateRule">abr Test1</a>
-<a href="/abr-test/LowestBitrateRule">abr Test2</a>
-<%include component/footer.ejs%>
+    <%include component/header.ejs%>
+    <div class="container theme-showcase" role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h1>Theme example</h1>
+            <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+        </div>
+
+        <div class="page-header">
+            <h1>Live</h1>
+        </div>
+        <ul class="video-contain clearfix">
+            <li class="video matrix">
+                <a href="/player">
+                    <div class="img">
+                        <div class="lazy-img">
+                            <img src="/image/surface.webp">
+                        </div>
+                        <span class="so-imgTag_rb">30:00</span>
+                    </div>
+                </a>
+                <div class="info">
+                    <div class="headline clearfix">
+                        <a href="/player" class="title">标题</a>
+                    </div>
+                    <div class="tags">
+                        <span title="创建时间" class="so-icon time">
+                            <img src="/image/icon/date.svg">
+                            2017-01-29
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="video matrix">
+                <a href="/player">
+                    <div class="img">
+                        <div class="lazy-img">
+                            <img src="/image/surface.webp">
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="video matrix">
+                <a href="/player">
+                    <div class="img">
+                        <div class="lazy-img">
+                            <img src="/image/surface.webp">
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="video matrix">
+                <a href="/player">
+                    <div class="img">
+                        <div class="lazy-img">
+                            <img src="/image/surface.webp">
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="video matrix">
+                <a href="/player">
+                    <div class="img">
+                        <div class="lazy-img">
+                            <img src="/image/surface.webp">
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <div class="page-header">
+            <h1>Vod</h1>
+        </div>
+
+        <div class="page-header">
+            <h1>Cloud</h1>
+        </div>
+
+        <a href="/player">player</a>
+        <a href="/abr-test/RequestBitrateRule">abr Test1</a>
+        <a href="/abr-test/LowestBitrateRule">abr Test2</a>
+    </div>
+
+    <%include component/footer.ejs%>
 </body>
 </html>

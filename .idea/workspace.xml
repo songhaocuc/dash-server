@@ -2,13 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d68d625-e4e9-4bd0-a7d3-76cf837746a5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/model/ABRRule.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Video.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap-theme.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/docs.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/video.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/icon/date.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/image/surface.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/npm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/abr/DownloadRatioRule.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/abr/DownloadRatioRule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/abr/RequestBitrateRule.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/abr/RequestBitrateRule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/abr-test.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/abr-test.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/component/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/component/footer.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/component/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/component/header.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,88 +43,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
+        <entry file="file://$PROJECT_DIR$/views/abr-test.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/mediaOperator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/model/db.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/upload.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-50">
-              <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/run_python.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-83">
-              <caret line="5" selection-start-line="5" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/player.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/component/header.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-              <folding>
-                <element signature="n#style#0;n#image#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/component/footer.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-              <folding>
-                <element signature="n#style#0;n#image#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/upload-test.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+            <state relative-caret-position="171">
+              <caret line="27" selection-start-line="27" selection-start-column="84" selection-end-line="28" />
             </state>
           </provider>
         </entry>
@@ -112,8 +54,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+            <state relative-caret-position="-1433">
+              <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/theme.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/video.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="80" column="29" lean-forward="true" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/upload.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/db.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="215">
+              <caret line="58" column="15" lean-forward="true" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/ABRRule.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -123,6 +110,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -145,23 +133,31 @@
         <option value="$PROJECT_DIR$/views/abr-test.ejs" />
         <option value="$PROJECT_DIR$/public/js/abr/RequestBitrateRule.js" />
         <option value="$PROJECT_DIR$/public/js/abr/DownloadRatioRule.js" />
-        <option value="$PROJECT_DIR$/views/index.ejs" />
-        <option value="$PROJECT_DIR$/views/component/header.ejs" />
-        <option value="$PROJECT_DIR$/views/component/footer.ejs" />
         <option value="$PROJECT_DIR$/routes/upload.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/views/upload-test.ejs" />
         <option value="$PROJECT_DIR$/utils/mediaOperator.js" />
+        <option value="$PROJECT_DIR$/public/css/video.css" />
+        <option value="$PROJECT_DIR$/public/css/theme.css" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/views/component/header.ejs" />
+        <option value="$PROJECT_DIR$/views/component/footer.ejs" />
         <option value="$PROJECT_DIR$/model/db.js" />
+        <option value="$PROJECT_DIR$/model/ABRRule.js" />
+        <option value="$PROJECT_DIR$/model/Video.js" />
+        <option value="$PROJECT_DIR$/model/ABRRule/ABRRuleDAO.js" />
+        <option value="$PROJECT_DIR$/model/Video/VideoDAO.js" />
+        <option value="$PROJECT_DIR$/model/Video/Video.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="93" />
-    <option name="y" value="270" />
-    <option name="width" value="1378" />
-    <option name="height" value="715" />
+    <option name="x" value="407" />
+    <option name="y" value="64" />
+    <option name="width" value="1557" />
+    <option name="height" value="821" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -177,20 +173,7 @@
             <path>
               <item name="dash-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="dash-server" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dash-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dash-server" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dash-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dash-server" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="vod" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dash-server" type="b2602c69:ProjectViewProjectNode" />
@@ -200,12 +183,13 @@
             <path>
               <item name="dash-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="dash-server" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dash-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="dash-server" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -217,20 +201,25 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app.js" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Work\livestreaming\dash-server\public\image" />
-      <recent name="D:\Work\livestreaming\dash-server\public\js\abr" />
-      <recent name="D:\Work\livestreaming\dash-server\views" />
-      <recent name="D:\Work\livestreaming\dash-server\public\js" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Work\livestreaming\dash-server\model" />
+      <recent name="D:\Work\livestreaming\dash-server\model\ABRRule" />
+      <recent name="D:\Work\livestreaming\dash-server\model\Video" />
+      <recent name="D:\Work\livestreaming\dash-server\public" />
       <recent name="D:\Work\livestreaming\dash-server\public\image" />
-      <recent name="D:\Work\livestreaming\dash-server\views\component" />
-      <recent name="D:\Work\livestreaming\dash-server\public\js\dash" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Work\livestreaming\dash-server\model" />
+      <recent name="D:\Work\livestreaming\dash-server\public\css" />
+      <recent name="D:\Work\livestreaming\dash-server\public\image\icon" />
+      <recent name="D:\Work\livestreaming\dash-server\public\image" />
+      <recent name="D:\Work\livestreaming\dash-server\public\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -277,7 +266,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34906000" />
+    <option name="totallyTimeSpent" value="52599000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -289,22 +278,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="93" y="270" width="1378" height="715" extended-state="0" />
+    <frame x="407" y="64" width="1557" height="821" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25074628" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22119816" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3913824" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.41472173" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.38833332" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3609898" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32935154" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32764506" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32315978" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.325" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -334,8 +323,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/dash/dash.all.debug.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="4266" column="35" lean-forward="true" selection-start-line="4266" selection-start-column="35" selection-end-line="4266" selection-end-column="35" />
+        <state relative-caret-position="336">
+          <caret line="25695" column="6" selection-start-line="25695" selection-start-column="6" selection-end-line="25695" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -349,35 +338,21 @@
     <entry file="file://$PROJECT_DIR$/public/python/abrwheel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="8" column="27" lean-forward="true" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/abr/LowestBitrateRule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1634">
-          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/abr/RequestBitrateRule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-127">
-          <caret line="40" column="10" lean-forward="true" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
+        <state relative-caret-position="1349">
+          <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/abr/DownloadRatioRule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/abr-test.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="-1856">
+          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -387,13 +362,6 @@
     <entry file="file://$PROJECT_DIR$/public/image/footer.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/player.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -401,37 +369,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/component/header.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding>
-            <element signature="n#style#0;n#image#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/component/footer.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-          <folding>
-            <element signature="n#style#0;n#image#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/run_python.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-83">
+        <state relative-caret-position="95">
           <caret line="5" selection-start-line="5" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
         </state>
       </provider>
     </entry>
@@ -442,13 +383,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/upload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/mediaOperator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -456,10 +390,127 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/bootstrap.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/abr/RequestBitrateRule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="793">
+          <caret line="77" lean-forward="true" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap-theme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="45" column="3" lean-forward="true" selection-start-line="45" selection-start-column="3" selection-end-line="45" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap-theme.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/abr-test.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="27" selection-start-line="27" selection-start-column="84" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/image/icon/date.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/docs.min.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/theme.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1433">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/component/header.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/component/footer.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/video.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="80" column="29" lean-forward="true" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Video/VideoDAO.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ABRRule/ABRRuleDAO.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/Video/Video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ABRRule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/db.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        <state relative-caret-position="215">
+          <caret line="58" column="15" lean-forward="true" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
         </state>
       </provider>
     </entry>
