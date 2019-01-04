@@ -73,6 +73,9 @@ li, ol, ul {
 .video.matrix .info .time {
     margin-right: 0;
 }
+.video.matrix .info .id {
+    display: none;
+}
 
 .so-icon {
     display: inline-block;

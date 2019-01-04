@@ -12,6 +12,9 @@
     <link href="/css/theme.css" rel="stylesheet">
     <link href="/css/video.css" rel="stylesheet">
     <link href="/css/docs.min.css" rel="stylesheet">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/handlebars-v4.0.12.js"></script>
+    <script src="/js/date-format.js"></script>
 </head>
 <body>
     <%include component/header.ejs%>
@@ -25,7 +28,7 @@
         <div class="page-header">
             <h1>Live</h1>
         </div>
-        <ul class="video-contain clearfix">
+        <ul id="live-container" class="video-contain clearfix">
             <li class="video matrix">
                 <a href="/player">
                     <div class="img">
@@ -40,6 +43,7 @@
                         <a href="/player" class="title">标题</a>
                     </div>
                     <div class="tags">
+                        <span class="id">av762321</span>
                         <span title="创建时间" class="so-icon time">
                             <img src="/image/icon/date.svg">
                             2017-01-29
@@ -47,51 +51,22 @@
                     </div>
                 </div>
             </li>
-            <li class="video matrix">
-                <a href="/player">
-                    <div class="img">
-                        <div class="lazy-img">
-                            <img src="/image/surface.webp">
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="video matrix">
-                <a href="/player">
-                    <div class="img">
-                        <div class="lazy-img">
-                            <img src="/image/surface.webp">
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="video matrix">
-                <a href="/player">
-                    <div class="img">
-                        <div class="lazy-img">
-                            <img src="/image/surface.webp">
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="video matrix">
-                <a href="/player">
-                    <div class="img">
-                        <div class="lazy-img">
-                            <img src="/image/surface.webp">
-                        </div>
-                    </div>
-                </a>
-            </li>
         </ul>
 
         <div class="page-header">
             <h1>Vod</h1>
         </div>
+        <ul id="vod-container" class="video-contain clearfix">
+
+        </ul>
 
         <div class="page-header">
             <h1>Cloud</h1>
         </div>
+
+        <ul id="cloud-container" class="video-contain clearfix">
+
+        </ul>
 
         <a href="/player">player</a>
         <a href="/abr-test/RequestBitrateRule">abr Test1</a>
@@ -99,5 +74,46 @@
     </div>
 
     <%include component/footer.ejs%>
+
+<script>
+    $(document).ready(function () {
+        let videoTemplateElement = $('#videoTemplate').html();
+        let videoTemplate = Handlebars.compile(videoTemplateElement);
+        let html = videoTemplate({
+            id: "av12321",
+            thumbnail: 'surface.webp',
+            // duration: '10:10',
+            name: 'handlebar',
+            date: new Date().format('yyyy-MM-dd'),
+            isVod: 'hidden'
+        });
+        $('#vod-container').html(html);
+    })
+</script>
 </body>
 </html>
+
+<script type="text/x-handlebars-template" id="videoTemplate">
+    <li class="video matrix">
+        <a href="/player/{{id}}">
+            <div class="img">
+                <div class="lazy-img">
+                    <img src="/image/thumbnail/{{thumbnail}}">
+                </div>
+                <span class="so-imgTag_rb">{{duration}}</span>
+            </div>
+        </a>
+        <div class="info">
+            <div class="headline clearfix">
+                <a href="/player/{{id}}" class="title">{{name}}</a>
+            </div>
+            <div class="tags">
+                <span class="id">{{id}}</span>
+                <span title="创建时间" class="so-icon time">
+                    <img src="/image/icon/date.svg">
+                    {{date}}
+                </span>
+            </div>
+        </div>
+    </li>
+</script>

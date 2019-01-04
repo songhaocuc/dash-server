@@ -7,7 +7,7 @@ var upload = multer({dest: 'upload_tmp/'});
 
 var mediaOperator = require('../utils/mediaOperator.js');
 
-router.post('/', upload.any(), function(req, res, next) {
+router.post('/vod', upload.any(), function(req, res, next) {
     console.log(req.files[0]);  // 上传的文件信息
 
     var des_file = "./upload/" + req.files[0].originalname;
@@ -21,7 +21,7 @@ router.post('/', upload.any(), function(req, res, next) {
                     filename:req.files[0].originalname
                 };
                 console.log( response );
-                mediaOperator.video2dash(req.files[0].originalname);
+                // mediaOperator.video2dash(req.files[0].originalname);
                 res.end( JSON.stringify( response ) );
             }
         });
