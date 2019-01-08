@@ -7,5 +7,5 @@ var abrRuleSchema = new mongoose.Schema({
     createTime: Date,
 });
 
-var abrRuleModel = mongoose.model('ABRRule', videoSchema);
+var abrRuleModel = mongoose.model('ABRRule', abrRuleSchema);
 module.exports = abrRuleModel;

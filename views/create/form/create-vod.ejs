@@ -13,11 +13,15 @@
         <div class="form-group">
             <label for="inputfile">视频文件</label>
             <input id="input-vod" type="file" class="file-loading" name="file">
+            <input id="input-filename" type="text" style="display: none" name="filename">
             <script>
                 $(document).ready(function() {
                     $("#input-vod").fileinput({
                         uploadUrl: '/upload/vod',    //未设置此属性，输入框为一条形控件；设置后，出现文件拖拽区域。
                             //最大文件大小 默认大小25M
+                    });
+                    $(".fileinput-upload").click(function () {
+                        $("#input-filename").val($(".file-caption-name").attr('title'));
                     });
                 });
             </script>

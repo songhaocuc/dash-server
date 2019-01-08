@@ -5,7 +5,7 @@ var multer  = require('multer');
 var router = express.Router();
 var upload = multer({dest: 'upload_tmp/'});
 
-var mediaOperator = require('../utils/mediaOperator.js');
+// var mediaOperator = require('../utils/mediaOperator.js');
 
 router.post('/vod', upload.any(), function(req, res, next) {
     console.log(req.files[0]);  // 上传的文件信息

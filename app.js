@@ -11,7 +11,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(express.static('public'));
+app.use(express.static('public', {
+    setHeaders: function (res, path ,stat) {
+        res.set('Access-Control-Allow-Origin', '*');
+    }
+}));
 
 app.set('view engine', 'ejs');
 
@@ -21,20 +25,28 @@ app.get('/', function (req, res) {
 });
 
 app.get('/vod', function (req, res) {
-   res.render('videos',{label:"vod"});
+   res.render('vod',{label:"vod"});
 });
 
+app.use('/data', router.data);
 app.use('/create', router.create);
 
-// app.get('/player', function (req, res) {
-//    res.render('player');
-// });
-//
-// app.get('/abr-test/:rule', function (req, res) {
-//    res.render('abr-test',{
-//        rule : req.params.rule
-//    });
-// });
+var db = require('./model/db');
+
+app.get('/player/:id', function (req, res) {
+    let id = req.params.id;
+    db.findVideoById(id , function (err, doc) {
+        res.render('player', {
+            label: doc.type,
+            id: doc.id,
+            name: doc.name,
+            type: doc.type,
+            createTime: doc.createTime
+        });
+    });
+
+});
+
 
 
 // var pythonUtils = require('./utils/run_python');

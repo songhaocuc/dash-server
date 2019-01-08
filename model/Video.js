@@ -6,7 +6,8 @@ var videoSchema = new mongoose.Schema({
     type: String,
     createTime: Date,
     bitrateList: Array,
-    url: String
+    url: String,
+    duration: String
 });
 
 videoSchema.statics.countByType = function (type, callback) {
