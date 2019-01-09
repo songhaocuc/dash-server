@@ -11,7 +11,6 @@ function video2dash(filename, id) {
             + '-window_size 5 -adaptation_sets "id=0,streams=v id=1,streams=a" '
             + '-f dash ./public/media/vod/' + id + '/index.mpd' ;
     fs.mkdir('./public/media/vod/'+id, function (err) {
-        console.log('mkdir')
         if(err){
             console.log(err);
         }

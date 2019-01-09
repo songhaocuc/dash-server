@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.use(express.static('public', {
     setHeaders: function (res, path ,stat) {
-        res.set('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Origin', '*');
     }
 }));
 
