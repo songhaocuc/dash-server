@@ -2,6 +2,8 @@ var express = require("express");
 var app = express();
 var router = require('./routes/router');
 
+const liveServer = require('./utils/live-server');
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -33,6 +35,12 @@ app.use('/create', router.create);
 
 var db = require('./model/db');
 
+app.get('/player/test', function (req, res) {
+   res.render('player-test', {
+       label: ''
+   }) ;
+});
+
 app.get('/player/:id', function (req, res) {
     let id = req.params.id;
     db.findVideoById(id , function (err, doc) {
@@ -61,3 +69,4 @@ app.use('/upload', router.upload);
 
 
 app.listen(3000);
+liveServer.run();
