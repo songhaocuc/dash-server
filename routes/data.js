@@ -15,16 +15,21 @@ router.get('/videos/delete/:id', function (req, res) {
             console.log(err);
             res.send();
         }else{
-            fileOperator.rmdir('./public/media/vod/'+ req.params.id, function (err) {
-                if(err){
-                    res.send();
-                    return;
-                }
-                res.send('1');
-            });
-            fileOperator.rmfile('./public/image/thumbnail/'+ req.params.id + '.jpg', function (err) {
-                if(err){
-                    console.log(err);
+            db.findVideoById(req.params.id, (err, doc) => {
+                let type = doc.type;
+                if(type === 'vod' && type === 'live'){
+                    fileOperator.rmdir('./public/media/'+ type +'/'+ req.params.id, function (err) {
+                        if(err){
+                            res.send();
+                            return;
+                        }
+                        res.send('1');
+                    });
+                    fileOperator.rmfile('./public/image/thumbnail/'+ req.params.id + '.jpg', function (err) {
+                        if(err){
+                            console.log(err);
+                        }
+                    });
                 }
             });
         }

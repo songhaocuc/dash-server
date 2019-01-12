@@ -30,6 +30,14 @@ app.get('/vod', function (req, res) {
    res.render('vod',{label:"vod"});
 });
 
+app.get('/live', function (req, res) {
+    res.render('live', {label: "live"});
+});
+
+app.get('/cloud', function (req, res) {
+    res.render('cloud', {label: "cloud"});
+});
+
 app.use('/data', router.data);
 app.use('/create', router.create);
 
@@ -49,7 +57,8 @@ app.get('/player/:id', function (req, res) {
             id: doc.id,
             name: doc.name,
             type: doc.type,
-            createTime: doc.createTime
+            createTime: doc.createTime,
+            url: doc.url
         });
     });
 

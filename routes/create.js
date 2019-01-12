@@ -59,14 +59,46 @@ router.post('/:type', function (req, res) {
                     res.render('create/create-res.ejs', {
                         type: 'vod',
                         label: 'create',
-                        resMessage: 'create vod success ' + id
+                        resMessage: 'create vod success: ' + id
                     });
                 });
             })
         }else if (type === 'live'){
-
+            db.createNewVideo({
+                name: req.body.name,
+                id: id,
+                type: 'live',
+                createTime : new Date(),
+                liveon: false
+            }, function (err, object) {
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                res.render('create/create-res.ejs', {
+                    type: 'live',
+                    label: 'create',
+                    resMessage: 'create live success , live url: rtmp://localhost/live/' + id
+                });
+            });
         }else if (type === 'cloud'){
-
+            db.createNewVideo({
+                name: req.body.name,
+                id: id,
+                type: 'cloud',
+                createTime : new Date(),
+                url: req.body.url
+            }, function (err, object) {
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                res.render('create/create-res.ejs', {
+                    type: 'cloud',
+                    label: 'create',
+                    resMessage: 'create cloud success , video id: ' + id
+                });
+            });
         }else {
             res.render('create/create-res.ejs', {
                 resMessage: 'error type'
