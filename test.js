@@ -2,6 +2,7 @@ var mo = require('./utils/utils.media-operator');
 var db = require('./model/db')
 var fs = require('fs')
 var path = require('path')
+var config = require('./config/config')
 // mo.videoInfo('01.mp4', function (stdout) {
 //     console.log(1)
 //     console.log(stdout)
@@ -47,6 +48,10 @@ function rmdir (dir, callback) {
     })
 }
 
-db.findVideoById('av2019010842633',function (err, doc) {
-    console.log(doc)
+// db.findVideoById('av2019010842633',function (err, doc) {
+//     console.log(doc)
+// })
+
+config.updateConfigWith((config)=>{
+    console.log(config);
 })

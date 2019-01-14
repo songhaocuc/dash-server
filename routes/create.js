@@ -104,7 +104,8 @@ router.post('/:type', function (req, res) {
                 name: req.body.name,
                 id: id,
                 type: 'abr',
-                createTime : new Date()
+                createTime : new Date(),
+                description:req.body.description
             }, function (obj, err) {
                 res.render('create/create-res.ejs', {
                     type: 'abr',

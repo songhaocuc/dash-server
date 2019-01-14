@@ -38,8 +38,15 @@ app.get('/cloud', function (req, res) {
     res.render('cloud', {label: "cloud"});
 });
 
+app.get('/abr-rules', function (req, res) {
+    res.render('abr-rules', {
+        label: "abrrules"
+    });
+});
+
 app.use('/data', router.data);
 app.use('/create', router.create);
+app.use('/config', router.config);
 
 var db = require('./model/db');
 

@@ -6,7 +6,29 @@ var fileOperator = require('../utils/utils.file-operator');
 router.get('/videos/:type', function (req, res) {
     db.findVideoByType(req.params.type, function (err, docs) {
         res.send(docs);
-    })
+    });
+});
+
+router.get('/abr-rules', function (req, res) {
+    db.findAllRules(function (err, docs) {
+       res.send(docs);
+    });
+});
+
+router.get('/abr-rules/delete/:id', function (req, res) {
+    db.deleteRuleById(req.params.id, (err)=>{
+        if(err){
+            console.log(err);
+            res.send();
+        }else {
+            res.send('1');
+            fileOperator.rmdir('./public/python/'+req.params.id, (err)=>{
+                if(err){
+                    console.log(err);
+                }
+            });
+        }
+    });
 });
 
 router.get('/videos/delete/:id', function (req, res) {

@@ -54,6 +54,9 @@ function deleteRuleById(id, callback){
     abrRule.deleteOne({id: id}, callback);
 }
 
+function findAllRules(callback){
+    abrRule.findAllRules(callback);
+}
 ///////////////////////
 // settings
 ///////////////////////
@@ -69,7 +72,8 @@ db = {
     deleteVideoById: deleteVideoById,
     findRuleById:findRuleById,
     createNewRule:createNewRule,
-    deleteRuleById:deleteRuleById
+    deleteRuleById:deleteRuleById,
+    findAllRules:findAllRules
 };
 
 module.exports = db;
