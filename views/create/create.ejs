@@ -23,6 +23,7 @@
         <li role="presentation"><a href="/create/live">Live</a></li>
         <li role="presentation"><a href="/create/vod">Vod</a></li>
         <li role="presentation"><a href="/create/cloud">Cloud</a></li>
+        <li role="presentation"><a href="/create/abr">ABR</a></li>
     </ul>
 
     <% if(type === 'live'){ %>
@@ -31,6 +32,8 @@
         <% include form/create-vod.ejs %>
     <% }else if(type === 'cloud'){ %>
         <% include form/create-cloud.ejs %>
+    <% }else if(type === 'abr'){ %>
+        <% include form/create-abr.ejs %>
     <% } %>
 </div>
 <% include ../component/footer.ejs %>

@@ -48,13 +48,14 @@ app.get('/player/test', function (req, res) {
        label: ''
    }) ;
 });
-
+var config = require('./config/config');
 app.get('/player/:id', function (req, res) {
     let id = req.params.id;
     db.findVideoById(id , function (err, doc) {
         res.render('player', {
             label: doc.type,
             id: doc.id,
+            abrId: config.getConfig().abrId,
             name: doc.name,
             type: doc.type,
             createTime: doc.createTime,
@@ -66,14 +67,17 @@ app.get('/player/:id', function (req, res) {
 
 
 
-// var pythonUtils = require('./utils/run_python');
+var pythonUtils = require('./utils/run_python');
 
-// app.post('/ab', function (req, res) {
-//    console.log(req.body);
-//     pythonUtils.pythongo('./public/python/abrwheel.py', req.body.data, function (error,stdout,stderr) {
-//        res.send(stdout);
-//     });
-// });
+app.post('/abr', function (req, res) {
+   console.log(req.body);
+    // pythonUtils.pythongo('./public/python/abrwheel.py', req.body.data, function (error,stdout,stderr) {
+    //    res.send(stdout);
+    // });
+    pythonUtils.runAbrRule(req.body.ABRId, req.body.data, function (error,stdout,stderr) {
+       res.send(stdout);
+    })
+});
 app.use('/upload', router.upload);
 
 

@@ -42,7 +42,17 @@ function deleteVideoById(id, callback){
 ///////////////////////
 // abr rules
 ////////////////////////
+function findRuleById(id, callback){
+    abrRule.findRuleById(id, callback);
+}
 
+function createNewRule(object, callback){
+    abrRule.create(object, callback);
+}
+
+function deleteRuleById(id, callback){
+    abrRule.deleteOne({id: id}, callback);
+}
 
 ///////////////////////
 // settings
@@ -56,7 +66,10 @@ db = {
     findVideoById: findVideoById,
     createNewVideo: createNewVideo,
     updateVideoById: updateVideoById,
-    deleteVideoById: deleteVideoById
+    deleteVideoById: deleteVideoById,
+    findRuleById:findRuleById,
+    createNewRule:createNewRule,
+    deleteRuleById:deleteRuleById
 };
 
 module.exports = db;

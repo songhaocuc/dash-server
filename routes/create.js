@@ -99,8 +99,24 @@ router.post('/:type', function (req, res) {
                     resMessage: 'create cloud success , video id: ' + id
                 });
             });
-        }else {
+        }else if(type === 'abr'){
+            db.createNewRule({
+                name: req.body.name,
+                id: id,
+                type: 'abr',
+                createTime : new Date()
+            }, function (obj, err) {
+                res.render('create/create-res.ejs', {
+                    type: 'abr',
+                    label: 'create',
+                    resMessage: 'create ABRRule success , id: ' + id
+                });
+            })
+        }
+        else {
             res.render('create/create-res.ejs', {
+                type: type,
+                label: 'create',
                 resMessage: 'error type'
             });
         }

@@ -2,7 +2,7 @@ var exec = require('child_process').exec;
 var fs = require('fs');
 
 function video2dash(filename, id) {
-    var cmd = 'ffmpeg -re -i ' + './upload/' + filename + ' '
+    var cmd = 'ffmpeg -re -i ' + '\"./upload/' + filename + '\" '
             + ' -c:a aac -c:v libx264 '
             + ' -map 0:v -map 0:v -map 0:v '
             + ' -b:v:0 800k -b:v:1 300k -b:v:2 2500k '
@@ -24,7 +24,7 @@ function video2dash(filename, id) {
 }
 // filepath
 function videoInfo(filename, callback){
-    let cmd = 'ffmpeg -i ' + './upload/' + filename;
+    let cmd = 'ffmpeg -i ' + '\"./upload/' + filename +'\"';
     exec(cmd, function (err, stdout, stderr) {
         if(err){
             if(/At\sleast\sone\soutput\sfile\smust\sbe\sspecified/.test(err)){
@@ -41,7 +41,7 @@ function videoInfo(filename, callback){
 }
 
 function getVideoThumbnail(filename, id){
-    let cmd = 'ffmpeg -i ' + './upload/' + filename + ' -y -f image2 -t 0.001 -s 320x200 ./public/image/thumbnail/'+ id + '.jpg';
+    let cmd = 'ffmpeg -i ' + '\"./upload/' + filename + '\" -y -f image2 -t 0.001 -s 320x200 ./public/image/thumbnail/'+ id + '.jpg';
     exec(cmd, function (err, stdout, stderr) {
         if(err){
             console.log(err);
@@ -50,7 +50,7 @@ function getVideoThumbnail(filename, id){
 }
 
 function getRtmpThumbnail(url, delay, id){
-    let cmd = 'ffmpeg -i ' + url + ' -y -f image2 -ss ' + delay + ' -s 320x200 ./public/image/thumbnail/'+ id + '.jpg';
+    let cmd = 'ffmpeg -i \"' + url + '\" -y -f image2 -ss ' + delay + ' -s 320x200 ./public/image/thumbnail/'+ id + '.jpg';
     exec(cmd, function (err, stdout, stderr) {
         if(err){
             console.log(err);

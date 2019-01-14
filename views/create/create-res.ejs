@@ -18,7 +18,11 @@
 </head>
 <body>
 <% include ../component/header.ejs %>
-<%= resMessage %>
+<div class="container theme-showcase" role="main">
+    <p class="bg-success">
+        <%= resMessage %>
+    </p>
+</div>
 <% include ../component/footer.ejs %>
 <script>
     $("ul.nav-tabs").children().each(function () {

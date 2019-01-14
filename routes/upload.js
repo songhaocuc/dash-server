@@ -7,7 +7,7 @@ var upload = multer({dest: 'upload_tmp/'});
 
 // var mediaOperator = require('../utils/mediaOperator.js');
 
-router.post('/vod', upload.any(), function(req, res, next) {
+router.post('/:type', upload.any(), function(req, res, next) {
     console.log(req.files[0]);  // 上传的文件信息
 
     var des_file = "./upload/" + req.files[0].originalname;

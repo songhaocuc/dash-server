@@ -16,6 +16,7 @@
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.2",
     "multer": "^1.4.1",
-    "node-media-server": "^1.4.9"
+    "node-media-server": "^1.4.9",
+    "unzip": "^0.1.11"
   }
 }
