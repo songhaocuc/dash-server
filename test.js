@@ -52,6 +52,16 @@ function rmdir (dir, callback) {
 //     console.log(doc)
 // })
 
-config.updateConfigWith((config)=>{
-    console.log(config);
-})
+// config.updateConfigWith((config)=>{
+//     console.log(config);
+// })
+
+var dor = require('./utils/dash-operator');
+
+// dor.getMpd2();
+const mediaOperator = require('./utils/utils.media-operator');
+
+let _url = 'https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd';
+let _url3 = 'http://wowzaec2demo.streamlock.net/live/bigbuckbunny/manifest_mvlist.mpd'
+let _url2 = 'https://dash.akamaized.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd'
+mediaOperator.getThumbnailByMPD(_url2, '22234');

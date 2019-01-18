@@ -37,7 +37,7 @@
             result.forEach(function (doc, index) {
                 let html = videoTemplate({
                     id: doc.id,
-                    thumbnail: 'cloud.jpg',
+                    thumbnail: doc.id + '.jpg',
                     name: doc.name,
                     //duration: doc.duration || '00:00:00',
                     date: /^(.{10})/.exec(doc.createTime)[1]
@@ -58,15 +58,6 @@
                 })
             })
         });
-        // let html = videoTemplate({
-        //     id: "av12321",
-        //     thumbnail: 'surface.webp',
-        //     // duration: '10:10',
-        //     name: 'handlebar',
-        //     date: new Date().format('yyyy-MM-dd'),
-        //     isVod: 'hidden'
-        // });
-        // $('#vod-container').append(html);
     })
 </script>
 </body>
@@ -99,7 +90,7 @@
                         <img style="width: 16px; height: 16px" src="/image/icon/option.svg">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="drop{{id}}">
-                        <li><a href="#" class="video-delete">delete</a></li>
+                        <li><a href="" class="video-delete">delete</a></li>
                     </ul>
                 </div>
             </div>

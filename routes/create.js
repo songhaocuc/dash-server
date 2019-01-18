@@ -4,6 +4,7 @@ var router = express.Router();
 
 var db = require('../model/db');
 var idGenernator = require('../utils/utils.id-generator');
+var pyUtils = require('../utils/run_python');
 
 var mediaOperator = require('../utils/utils.media-operator');
 
@@ -42,7 +43,7 @@ router.post('/:type', function (req, res) {
     uniqueId(id, function (id) {
         //todo
         if ( type === 'vod'){
-            mediaOperator.video2dash(req.body.filename, id);
+            // mediaOperator.video2dash(req.body.filename, id);
             mediaOperator.getVideoThumbnail(req.body.filename, id);
             mediaOperator.videoInfo(req.body.filename, function (info) {
                 db.createNewVideo({
@@ -50,12 +51,17 @@ router.post('/:type', function (req, res) {
                     id: id,
                     type: 'vod',
                     createTime : new Date(),
-                    duration: info.duration
+                    duration: info.duration,
+                    filename: req.body.filename,
+                    description: req.body.description,
+                    bitrateList: req.body.bitrateList,
+                    resolutionList: req.body.resolutionList
                 }, function (err, object) {
                     if(err){
                         console.log(err);
                         return;
                     }
+                    mediaOperator.generateVodDashByConfig(id);
                     res.render('create/create-res.ejs', {
                         type: 'vod',
                         label: 'create',
@@ -69,7 +75,10 @@ router.post('/:type', function (req, res) {
                 id: id,
                 type: 'live',
                 createTime : new Date(),
-                liveon: false
+                liveon: false,
+                description: req.body.description,
+                bitrateList: req.body.bitrateList,
+                resolutionList: req.body.resolutionList
             }, function (err, object) {
                 if(err){
                     console.log(err);
@@ -87,8 +96,10 @@ router.post('/:type', function (req, res) {
                 id: id,
                 type: 'cloud',
                 createTime : new Date(),
-                url: req.body.url
+                url: req.body.url,
+                description: req.body.description
             }, function (err, object) {
+                mediaOperator.getThumbnailByMPD(req.body.url, id);
                 if(err){
                     console.log(err);
                     return;
@@ -107,6 +118,7 @@ router.post('/:type', function (req, res) {
                 createTime : new Date(),
                 description:req.body.description
             }, function (obj, err) {
+                pyUtils.unzipAbrRule(req.body.filename, id);
                 res.render('create/create-res.ejs', {
                     type: 'abr',
                     label: 'create',

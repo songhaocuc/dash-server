@@ -29,10 +29,10 @@
                placeholder="请输入名称" style="display:none">
     </div>
     <div id="alert-container"></div>
-    <button id="post-rule" href="###" type="submit" class="btn btn-default">
+    <button id="post-rule" href="#" type="submit" class="btn btn-default">
         修改
     </button>
-    <button id="delete-rule" href="###" type="submit" class="btn btn-default">
+    <button id="delete-rule" href="#" type="submit" class="btn btn-default">
         删除
     </button>
 </div>
@@ -75,6 +75,7 @@
                 abrId: $('#abr-id').text()
             }, (result)=>{
                 console.log(result)
+                $('#alert-container').children().remove();
                 if(result === '1'){
                     $('#alert-container').append(Handlebars.compile($('#alert-success').html())());
                     // $('#alert-container').append($('#alert.alert-success').html());
@@ -86,7 +87,6 @@
         });
 
         $('#delete-rule').click(()=>{
-            console.log($('#abr-id').text())
             $.get('/data/abr-rules/delete/'+$('#abr-id').text(), (result)=>{
                 if(result === '1'){
                     $('.list-group-item.active').remove();

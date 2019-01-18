@@ -110,6 +110,7 @@ li, ol, ul {
     width: 768px;
     height: 432px;
     background: #000;
+    position: relative;
 }
 video {
     width: 100%;

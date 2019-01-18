@@ -25,11 +25,12 @@
 <div class="container theme-showcase" role="main">
     <div class="page-header">
         <h1><%= name%></h1>
-        <p><%= id%></p>
+        <p>视频id: <%= id%></p>
+        <p>说明: <%= description%></p>
     </div>
     <div class="dash-video-player">
         <!-- HTML structure needed for the ControlBar -->
-        <div class="video-container" id="videoContainer">
+        <div class="video-container videoContainer" id="videoContainer">
             <video preload="auto" autoplay="true" > </video>
             <div id="videoController" class="video-controller unselectable">
                 <div id="playPauseBtn" class="btn-play-pause" title="Play/Pause">
@@ -67,6 +68,7 @@
 <% include component/footer.ejs %>
 <script>
     var ABRId = "<%= abrId%>";
+    console.log(ABRId);
     function init() {
         var video,
             player,

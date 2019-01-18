@@ -32,6 +32,7 @@ function createNewVideo(object, callback){
 }
 //callback(err, doc)
 function updateVideoById(id, update, callback){
+    console.log(update)
     video.updateOne({id: id}, update, callback);
 }
 //callback(err)

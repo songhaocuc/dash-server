@@ -5,9 +5,12 @@ var videoSchema = new mongoose.Schema({
     name: String,
     type: String,
     createTime: Date,
-    bitrateList: Array,
+    bitrateList: String,
+    resolutionList: String,
     url: String,
     duration: String,
+    filename: String,
+    description:String,
     liveon: Boolean
 });
 

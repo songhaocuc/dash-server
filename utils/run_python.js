@@ -29,11 +29,13 @@ function unzipAbrRule(filename, id){
 function runAbrRule(id, params, callback) {
     console.log('[pythongo]' + params);
     exec('python ' + './public/python/'+id+'/run.py' + ' ' + JSON.stringify(params),function(error,stdout,stderr){
-        if(stdout.length >1){
-            console.log('you offer args:',stdout);
-        } else {
-            console.log('you don\'t offer args');
-        }
+        // if(stdout.length >1){
+        //     console.log('you offer args:',stdout);
+        // } else {
+        //     console.log('you don\'t offer args');
+        // }
+        console.log('[python err]'+ error);
+        console.log('[python out]'+stdout);
         if(error) {
             console.info('stderr : '+stderr);
         }

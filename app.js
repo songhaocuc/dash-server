@@ -22,7 +22,6 @@ app.use(express.static('public', {
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-    console.log('get /');
    res.render('index',{label:"home"});
 });
 
@@ -58,15 +57,20 @@ app.get('/player/test', function (req, res) {
 var config = require('./config/config');
 app.get('/player/:id', function (req, res) {
     let id = req.params.id;
+    console.log("[Debug]  "+ id);
     db.findVideoById(id , function (err, doc) {
-        res.render('player', {
-            label: doc.type,
-            id: doc.id,
-            abrId: config.getConfig().abrId,
-            name: doc.name,
-            type: doc.type,
-            createTime: doc.createTime,
-            url: doc.url
+        console.log("[Debug]  "+ doc);
+        config.getConfig((config)=>{
+            res.render('dashplayer', {
+                label: doc.type,
+                id: doc.id,
+                abrId: config.abrId,
+                name: doc.name,
+                type: doc.type,
+                createTime: doc.createTime,
+                url: doc.url,
+                description: doc.description
+            });
         });
     });
 
@@ -82,10 +86,37 @@ app.post('/abr', function (req, res) {
     //    res.send(stdout);
     // });
     pythonUtils.runAbrRule(req.body.ABRId, req.body.data, function (error,stdout,stderr) {
-       res.send(stdout);
+       console.log('[python out] ' + stdout);
+        res.send(stdout);
     })
 });
 app.use('/upload', router.upload);
+
+app.use('/change', router.change);
+
+app.get('/about', function (req, res) {
+    res.render('about', {
+        label: 'about'
+    });
+});
+
+app.get('/settings', function (req, res) {
+    res.render('settings', {
+        label: 'settings'
+    });
+});
+
+// app.get('/dashplayer', function (req, res) {
+//     res.render('dashplayer',{
+//         label: '0',
+//         id: '0',
+//         abrId: '0',
+//         name: '0',
+//         type: '0',
+//         createTime: '0',
+//         url: '0'
+//     });
+// });
 
 
 app.listen(3000);

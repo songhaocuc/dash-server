@@ -131,6 +131,9 @@ function ServerRuleClass() {
         }
         historyCount = metrics.HttpList.length;
 
+        if(rulesContext.getMediaInfo().representationCount === 1){
+            return SwitchRequest(context).create();
+        }
         let switchRequest = SwitchRequest(context).create();
         // switchRequest.quality = (current + 1)%rulesContext.getMediaInfo().representationCount;
 
@@ -146,7 +149,6 @@ function ServerRuleClass() {
             type        :'POST',
             url         :'/abr',
             async       :false,
-
             data        :{  ABRId       :ABRId,//global
                             'data'      : JSON.stringify(params)
                             },
