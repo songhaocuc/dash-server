@@ -18,7 +18,7 @@ var nms = new NodeMediaServer(config);
 nms.on('postPublish', (id, StreamPath, args) => {
     console.log('[NodeEvent on postPublish]', `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`);
     // mediaOperator.rtmp2dash(StreamPath);
-    // mediaOperator.generateLiveDashByConfig(StreamPath);
+    mediaOperator.generateLiveDashByConfig(StreamPath);
     let vid = /\/(av\d{13})/.exec(StreamPath)[1];
     mediaOperator.getRtmpThumbnail('rtmp://localhost/live/'+vid, 2, vid);
     db.updateVideoById(vid, {

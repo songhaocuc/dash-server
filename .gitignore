@@ -61,3 +61,11 @@ typings/
 .next
 
 .idea
+
+# 忽略非系统文件
+upload/
+upload_tmp/
+public/media/live
+public/media/vod
+public/image/thumbnail
+dist/

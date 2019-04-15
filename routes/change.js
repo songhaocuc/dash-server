@@ -10,7 +10,7 @@ router.get('/:id', (req, res)=>{
             name: doc.name,
             bitrateList:doc.bitrateList,
             description:doc.description || "",
-            resolutionList: doc.resolutionList || ""
+            // resolutionList: doc.resolutionList || ""
         });
     });
 });
@@ -20,7 +20,7 @@ router.post('/', (req, res)=>{
         name: req.body.name,
         description: req.body.description,
         bitrateList: req.body.bitrateList,
-        resolutionList: req.body.resolutionList
+        // resolutionList: req.body.resolutionList
     }, (err, doc)=>{
        if(err){
            console.log(err);
