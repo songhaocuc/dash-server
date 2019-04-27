@@ -61,7 +61,7 @@ app.get('/player/:id', function (req, res) {
     db.findVideoById(id , function (err, doc) {
         console.log("[Debug]  "+ doc);
         config.getConfig((config)=>{
-            res.render('dashplayer', {
+            res.render('player', {
                 label: doc.type,
                 id: doc.id,
                 abrId: config.abrId,
@@ -120,4 +120,6 @@ app.get('/settings', function (req, res) {
 
 
 app.listen(3000);
+console.log("[APP]HTTP服务器开始侦听");
 liveServer.run();
+console.log("[APP]流媒体服务器启动");

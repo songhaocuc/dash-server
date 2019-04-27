@@ -1,4 +1,4 @@
-# Logs
+﻿# Logs
 logs
 *.log
 npm-debug.log*
@@ -69,3 +69,4 @@ public/media/live
 public/media/vod
 public/image/thumbnail
 dist/
+database/
