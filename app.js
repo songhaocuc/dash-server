@@ -22,6 +22,7 @@ app.use(express.static('public', {
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
+    console.log("[APP] 访问主页");
    res.render('index',{label:"home"});
 });
 
@@ -61,7 +62,7 @@ app.get('/player/:id', function (req, res) {
     db.findVideoById(id , function (err, doc) {
         console.log("[Debug]  "+ doc);
         config.getConfig((config)=>{
-            res.render('player', {
+            res.render('dashplayer', {
                 label: doc.type,
                 id: doc.id,
                 abrId: config.abrId,

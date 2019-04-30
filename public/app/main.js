@@ -780,6 +780,22 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
                 }
                 $scope.safeApply();
             }
+            // ADD BY SONGHAO
+            if(type === "video"){
+                var time_s = getTimeForPlot();
+                window.USER_DEFINED.RECORD.data.push({
+                    time: time_s,
+                    buffer: bufferLevel,
+                    index: index,
+                    bitrate: bitrate,
+                    droppedFPS: droppedFPS,
+                    liveLatency: liveLatency,
+                    download: httpMetrics.download[type].average.toFixed(2),
+                    latency: httpMetrics.latency[type].average.toFixed(2),
+                    ratio: httpMetrics.ratio[type].average.toFixed(2)
+                });
+            }
+            //console.log(window.USER_DEFINED.RECORD.data);
         }
     }
 

@@ -9,6 +9,7 @@ var pyUtils = require('../utils/run_python');
 var mediaOperator = require('../utils/utils.media-operator');
 
 router.get('/', function (req, res) {
+    console.log("[ROUTER CREATE] 获取创建资源界面");
     res.render('create/create', {
         label: 'create',
         type: 'live'
@@ -16,6 +17,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/:type', function (req, res) {
+    console.log("[ROUTER CREATE] 获取创建资源界面： " + req.params.type);
     res.render('create/create', {
         label: 'create',
         type: req.params.type
@@ -23,6 +25,7 @@ router.get('/:type', function (req, res) {
 });
 
 router.post('/:type', function (req, res) {
+    console.log("[ROUTER CREATE] 请求创建资源");
     console.log(req.body);
     let id = idGenernator.createVideoId();
     let type = req.params.type;
@@ -100,6 +103,7 @@ router.post('/:type', function (req, res) {
                 url: req.body.url,
                 description: req.body.description
             }, function (err, object) {
+                console.log("[ROUTER CREATE] cloud资源数据库回调函数");
                 mediaOperator.getThumbnailByMPD(req.body.url, id);
                 if(err){
                     console.log(err);

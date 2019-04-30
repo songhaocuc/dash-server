@@ -43,6 +43,15 @@
         let type = "<%= type%>";
         var SOURCE_URL = type === "cloud" ? cloudUrl : url;
         // SOURCE_URL = 'https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd';
+
+        //使用全局变量记录一些数据
+        window.USER_DEFINED = {};
+        window.USER_DEFINED.RECORD = {};
+        window.USER_DEFINED.RECORD.config = {
+            interval: 1
+        };
+        window.USER_DEFINED.RECORD.data = [];
+
     </script>
     <!--<script src="/js/abr/ServerRule.js"></script>-->
     <script src="/app/main.js"></script>
@@ -556,6 +565,93 @@
             <!--</div>-->
         <!--</div>-->
     <!--</div>-->
+    <script src="/js/echarts.min.js"></script>
+    <div id="echart-test" style="width: 600px;height: 400px">
+
+    </div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('echart-test'));
+        // 指定图表的配置项和数据
+        var xdata = [];
+        var data = [];
+        var data1= [];
+        var option = {
+            title: {
+                text: 'Play State'
+            },
+            tooltip: {},
+            xAxis: {
+                // type: 'time',
+                splitLine:{
+                    show: false
+                },
+                data: xdata
+            },
+            legend:{
+              data:['bitrate','buffer']
+            },
+            yAxis: [
+            {
+                name:'bitrate',
+                type: 'value',
+                splitLine: {
+                    show: false
+                }
+            },{
+                name:'buffer',
+                type: 'value',
+                splitLine: {
+                    show: false
+                }
+            }],
+            series: [{
+                name: 'bitrate',
+                type: 'line',
+                showSymbol: false,
+                hoverAnimation: false,
+                data: data
+            },{
+                name: 'buffer',
+                type: 'line',
+                yAxisIndex : 1,
+                showSymbol: false,
+                hoverAnimation: false,
+                data: data1
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        setInterval(function () {
+            var data_source = window.USER_DEFINED.RECORD.data;
+            var data_obj = data_source[data_source.length - 1];
+            console.log(data_obj)
+            if(data_obj){
+                // data.push({
+                //     //time: data_obj.time,
+                //     value: [data_obj.time, data_obj.bitrate]
+                // });
+                // data1.push({
+                //     value: [data_obj.time, data_obj.buffer]
+                // })
+                xdata.push(data_obj.time);
+                data.push(data_obj.bitrate);
+                data1.push(data_obj.buffer);
+                myChart.setOption({
+                    xAxis:{
+                        data:xdata
+                    },
+                    series: [{
+                        data:data
+                    },{
+                        data:data1
+                    }]
+                });
+            }
+        }, 1000)
+
+
+    </script>
 </div>
     <% include component/footer.ejs %>
 </body>
