@@ -1,4 +1,33 @@
-<image src="/image/header.jpg" style="height: 200px">
-    header
-</image>
-<br>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Dash Server</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul id="top-nav" class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/live">Live</a></li>
+                <li><a href="/vod">Vod</a></li>
+                <li><a href="/cloud">Cloud</a></li>
+                <li><a href="/create">Create</a></li>
+                <li><a href="/abr-rules">ABRRules</a></li>
+                <!--<li><a href="/settings">Settings</a></li>-->
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+        <script>
+            var label = '<%=label%>'||'home';
+            $('#top-nav').children().each(function () {
+                if( label === $(this).text().toLowerCase()){
+                    $(this).addClass('active');
+                }
+            })
+        </script>
+    </div>
+</nav>

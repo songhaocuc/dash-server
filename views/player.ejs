@@ -6,8 +6,100 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Player</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/video.css" rel="stylesheet">
+    <link href="/css/docs.min.css" rel="stylesheet">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/handlebars-v4.0.12.js"></script>
+    <script src="/js/date-format.js"></script>
+    <script src="/js/dash/dash.all.min.js"></script>
+    <!--<script src="/js/abr/LowestBitrateRule.js"></script>-->
+    <script src="/js/abr/ServerRule.js"></script>
+    <script src="/lib/controlbar/ControlBar.js"></script>
+    <link href="/lib/controlbar/controlbar.css" rel="stylesheet">
 </head>
 <body>
+<% include component/header.ejs %>
+<div class="container theme-showcase" role="main">
+    <div class="page-header">
+        <h1><%= name%></h1>
+        <p>视频id: <%= id%></p>
+        <p>说明: <%= description%></p>
+    </div>
+    <div class="dash-video-player">
+        <!-- HTML structure needed for the ControlBar -->
+        <div class="video-container videoContainer" id="videoContainer">
+            <video preload="auto" autoplay="true" > </video>
+            <div id="videoController" class="video-controller unselectable">
+                <div id="playPauseBtn" class="btn-play-pause" title="Play/Pause">
+                    <span id="iconPlayPause" class="icon-play"></span>
+                </div>
+                <span id="videoTime" class="time-display">00:00:00</span>
+                <div id="fullscreenBtn" class="btn-fullscreen control-icon-layout" title="Fullscreen">
+                    <span class="icon-fullscreen-enter"></span>
+                </div>
+                <div id="bitrateListBtn" class="control-icon-layout" title="Bitrate List">
+                    <span class="icon-bitrate"></span>
+                </div>
+                <input type="range" id="volumebar" class="volumebar" value="1" min="0" max="1" step=".01"/>
+                <div id="muteBtn" class="btn-mute control-icon-layout" title="Mute">
+                    <span id="iconMute" class="icon-mute-off"></span>
+                </div>
+                <div id="trackSwitchBtn" class="control-icon-layout" title="A/V Tracks">
+                    <span class="icon-tracks"></span>
+                </div>
+                <div id="captionBtn" class="btn-caption control-icon-layout" title="Closed Caption">
+                    <span class="icon-caption"></span>
+                </div>
+                <span id="videoDuration" class="duration-display">00:00:00</span>
+                <div class="seekContainer">
+                    <div id="seekbar" class="seekbar seekbar-complete">
+                        <div id="seekbar-buffer" class="seekbar seekbar-buffer"></div>
+                        <div id="seekbar-play" class="seekbar seekbar-play"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include component/footer.ejs %>
+<script>
+    var ABRId = "<%= abrId%>";
+    console.log(ABRId);
+    function init() {
+        var video,
+            player,
+            url = "/media/<%= type%>/<%= id%>/index.mpd";
+        var cloudUrl = "<%= url%>";
+
+        let type = "<%= type%>";
+        url = type === "cloud" ? cloudUrl : url;
+            // url = "http://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd";
+
+        video = document.querySelector("video");
+        player = dashjs.MediaPlayer().create();
+
+        // don't use dash.js default rules
+        player.useDefaultABRRules(true);
+
+        // add my custom quality switch rule. Look at LowestBitrateRule.js to know more
+        // about the structure of a custom rule
+        // player.addABRCustomRule('qualitySwitchRules', 'DownloadRatioRule', DownloadRatioRule);
+        player.addABRCustomRule('qualitySwitchRules', 'ServerRule', ServerRule);
+
+        player.initialize(video, url, true);
+        var controlbar = new ControlBar(player);
+        controlbar.initialize();
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        init();
+    })
+</script>
 
 </body>
 </html>

@@ -1,0 +1,51 @@
+<div class="page-header">
+    <h1>Create <%=type.toUpperCase()%></h1>
+</div>
+<link href="/css/fileinput.css" rel="stylesheet">
+<script src="/js/fileinput.js"></script>
+<div>
+    <form role="form" action="/create/vod" method="post">
+        <div class="form-group">
+            <label for="name">视频名称</label>
+            <input type="text" class="form-control" id="name" name="name"
+                   placeholder="请输入名称">
+        </div>
+        <div class="form-group">
+            <label for="description">描述</label>
+            <input type="text" class="form-control" id="description" name="description"
+                   placeholder="请输入资源描述">
+        </div>
+        <div class="form-group">
+            <label for="bitrateList">码率/k</label>
+            <input type="text" class="form-control" id="bitrateList" name="bitrateList"
+                   placeholder="逗号分隔">
+        </div>
+        <div class="form-group" style="display: none">
+            <label for="resolutionList">分辨率</label>
+            <input type="text" class="form-control" id="resolutionList" name="resolutionList"
+                   placeholder="AxB，逗号分隔">
+        </div>
+        <div class="form-group">
+            <label for="inputfile">视频文件</label>
+            <input id="input-vod" type="file" class="file-loading" name="file">
+            <input id="input-filename" type="text" style="display: none" name="filename">
+            <script>
+                $(document).ready(function() {
+                    $("#input-vod").fileinput({
+                        uploadUrl: '/upload/vod',    //未设置此属性，输入框为一条形控件；设置后，出现文件拖拽区域。
+                            //最大文件大小 默认大小25M
+                    });
+                    $(".fileinput-upload").click(function () {
+                        $("#input-filename").val($(".file-caption-name").attr('title'));
+                    });
+                });
+            </script>
+        </div>
+        <!--<div class="form-group">-->
+            <!--<label for="bitrate">码率列表</label>-->
+            <!--<input type="text" class="form-control" name="bitrate"-->
+                   <!--placeholder='使用","分割'>-->
+        <!--</div>-->
+        <button type="submit" class="btn btn-default">提交</button>
+    </form>
+</div>

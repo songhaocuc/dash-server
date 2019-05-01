@@ -5,13 +5,247 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Home</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/video.css" rel="stylesheet">
+    <link href="/css/docs.min.css" rel="stylesheet">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/handlebars-v4.0.12.js"></script>
+    <script src="/js/date-format.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%include component/header.ejs%>
-<a href="/player">player</a>
-<a href="/abr-test/RequestBitrateRule">abr Test1</a>
-<a href="/abr-test/LowestBitrateRule">abr Test2</a>
-<%include component/footer.ejs%>
+    <%include component/header.ejs%>
+    <div class="container theme-showcase" role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <!--<div class="jumbotron">-->
+            <!--<h1>Theme example</h1>-->
+            <!--<p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>-->
+        <!--</div>-->
+
+        <div class="page-header">
+            <h1>Live</h1>
+        </div>
+        <ul id="live-container" class="video-contain clearfix">
+
+        </ul>
+
+        <div class="page-header">
+            <h1>Vod</h1>
+        </div>
+        <ul id="vod-container" class="video-contain clearfix">
+
+        </ul>
+
+        <div class="page-header">
+            <h1>Cloud</h1>
+        </div>
+
+        <ul id="cloud-container" class="video-contain clearfix">
+
+        </ul>
+
+    </div>
+
+    <%include component/footer.ejs%>
+
+<script>
+    $(document).ready(function () {
+        let liveTemplateElement = $('#liveTemplate').html();
+        let liveTemplate = Handlebars.compile(liveTemplateElement);
+        $.get('/data/videos/live', function (result) {
+            console.log(result);
+            result.forEach(function (doc, index) {
+                let html = liveTemplate({
+                    id: doc.id,
+                    thumbnail: doc.liveon ? doc.id +'.jpg': 'liveoff.jpg',
+                    name: doc.name,
+                    date: /^(.{10})/.exec(doc.createTime)[1]
+                });
+                $('#live-container').append(html);
+            })
+            $('#live-container').children().each(function () {
+                let videoBlock = $(this);
+                console.log(videoBlock)
+                let id = videoBlock.find('.id').text();
+                videoBlock.find('.video-delete').click(function () {
+                    $.get('/data/videos/delete/'+ id, function (result) {
+                        if(result === '1'){
+                            videoBlock.remove();
+                        }
+                    })
+                })
+            })
+        });
+
+        let vodTemplateElement = $('#vodTemplate').html();
+        let vodTemplate = Handlebars.compile(vodTemplateElement);
+        $.get('/data/videos/vod', function (result) {
+            console.log(result);
+            result.forEach(function (doc, index) {
+                let html = vodTemplate({
+                    id: doc.id,
+                    thumbnail: doc.id +'.jpg',
+                    name: doc.name,
+                    duration: doc.duration || '00:00:00',
+                    date: /^(.{10})/.exec(doc.createTime)[1]
+                });
+                $('#vod-container').append(html);
+            })
+            $('#vod-container').children().each(function () {
+                let videoBlock = $(this);
+                console.log(videoBlock)
+                let id = videoBlock.find('.id').text();
+                videoBlock.find('.video-delete').click(function () {
+                    console.log(id);
+                    $.get('/data/videos/delete/'+ id, function (result) {
+                        if(result === '1'){
+                            videoBlock.remove();
+                        }
+                    })
+                })
+            })
+        });
+
+        let cloudTemplateElement = $('#cloudTemplate').html();
+        let cloudTemplate = Handlebars.compile(cloudTemplateElement);
+        $.get('/data/videos/cloud', function (result) {
+            console.log(result);
+            result.forEach(function (doc, index) {
+                let html = cloudTemplate({
+                    id: doc.id,
+                    thumbnail: doc.id + '.jpg',
+                    name: doc.name,
+                    //duration: doc.duration || '00:00:00',
+                    date: /^(.{10})/.exec(doc.createTime)[1]
+                });
+                $('#cloud-container').append(html);
+            })
+            $('#cloud-container').children().each(function () {
+                let videoBlock = $(this);
+                console.log(videoBlock)
+                let id = videoBlock.find('.id').text();
+                videoBlock.find('.video-delete').click(function () {
+                    console.log(id);
+                    $.get('/data/videos/delete/'+ id, function (result) {
+                        if(result === '1'){
+                            videoBlock.remove();
+                        }
+                    })
+                })
+            })
+        });
+    })
+</script>
 </body>
 </html>
+
+<script type="text/x-handlebars-template" id="liveTemplate">
+    <li class="video matrix">
+        <a href="/player/{{id}}">
+            <div class="img">
+                <div class="lazy-img">
+                    <img src="/image/thumbnail/{{thumbnail}}">
+                </div>
+                <!--<span class="so-imgTag_rb">{{duration}}</span>-->
+            </div>
+        </a>
+        <div class="info">
+            <div class="headline clearfix">
+                <a href="/player/{{id}}" class="title">{{name}}</a>
+            </div>
+            <div class="tags">
+                <span class="id">{{id}}</span>
+                <span title="创建时间" class="so-icon time">
+                    <img src="/image/icon/date.svg">
+                    {{date}}
+                </span>
+                <!-- Single button -->
+                <div class="dropdown more-action">
+                    <a id="drop{{id}}" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <!--<span class="caret"></span>-->
+                        <img style="width: 16px; height: 16px" src="/image/icon/option.svg">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop{{id}}">
+                        <li><a href="" class="video-delete">delete</a></li>
+                        <li><a href="/change/{{id}}">change</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
+</script>
+
+<script type="text/x-handlebars-template" id="vodTemplate">
+    <li class="video matrix">
+        <a href="/player/{{id}}">
+            <div class="img">
+                <div class="lazy-img">
+                    <img src="/image/thumbnail/{{thumbnail}}">
+                </div>
+                <span class="so-imgTag_rb">{{duration}}</span>
+            </div>
+        </a>
+        <div class="info">
+            <div class="headline clearfix">
+                <a href="/player/{{id}}" class="title">{{name}}</a>
+            </div>
+            <div class="tags">
+                <span class="id">{{id}}</span>
+                <span title="创建时间" class="so-icon time">
+                    <img src="/image/icon/date.svg">
+                    {{date}}
+                </span>
+                <!-- Single button -->
+                <div class="dropdown more-action">
+                    <a id="drop{{id}}" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <!--<span class="caret"></span>-->
+                        <img style="width: 16px; height: 16px" src="/image/icon/option.svg">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop{{id}}">
+                        <li><a href="" class="video-delete">delete</a></li>
+                        <li><a href="/change/{{id}}">change</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
+</script>
+
+<script type="text/x-handlebars-template" id="cloudTemplate">
+    <li class="video matrix">
+        <a href="/player/{{id}}">
+            <div class="img">
+                <div class="lazy-img">
+                    <img src="/image/thumbnail/{{thumbnail}}">
+                </div>
+                <span class="so-imgTag_rb">{{duration}}</span>
+            </div>
+        </a>
+        <div class="info">
+            <div class="headline clearfix">
+                <a href="/player/{{id}}" class="title">{{name}}</a>
+            </div>
+            <div class="tags">
+                <span class="id">{{id}}</span>
+                <span title="创建时间" class="so-icon time">
+                    <img src="/image/icon/date.svg">
+                    {{date}}
+                </span>
+                <!-- Single button -->
+                <div class="dropdown more-action">
+                    <a id="drop{{id}}" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <!--<span class="caret"></span>-->
+                        <img style="width: 16px; height: 16px" src="/image/icon/option.svg">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="drop{{id}}">
+                        <li><a href="" class="video-delete">delete</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
+</script>

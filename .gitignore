@@ -1,4 +1,4 @@
-# Logs
+﻿# Logs
 logs
 *.log
 npm-debug.log*
@@ -59,3 +59,14 @@ typings/
 
 # next.js build output
 .next
+
+.idea
+
+# 忽略非系统文件
+upload/
+upload_tmp/
+public/media/live
+public/media/vod
+public/image/thumbnail
+dist/
+database/
