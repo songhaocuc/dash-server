@@ -95,6 +95,7 @@ router.post('/:type', function (req, res) {
                 });
             });
         }else if (type === 'cloud'){
+            console.log("[ROUTER CREATE] 创建CLOUD资源");
             db.createNewVideo({
                 name: req.body.name,
                 id: id,

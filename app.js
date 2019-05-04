@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var router = require('./routes/router');
+var http = require('http');
 
 const liveServer = require('./utils/live-server');
 
@@ -82,12 +83,12 @@ app.get('/player/:id', function (req, res) {
 var pythonUtils = require('./utils/run_python');
 
 app.post('/abr', function (req, res) {
-   console.log(req.body);
+   // console.log(req.body);
     // pythonUtils.pythongo('./public/python/abrwheel.py', req.body.data, function (error,stdout,stderr) {
     //    res.send(stdout);
     // });
     pythonUtils.runAbrRule(req.body.ABRId, req.body.data, function (error,stdout,stderr) {
-       console.log('[python out] ' + stdout);
+       // console.log('[python out] ' + stdout);
         res.send(stdout);
     })
 });
@@ -119,6 +120,35 @@ app.get('/settings', function (req, res) {
 //     });
 // });
 
+app.post('/evaluation', function (req, res) {
+    console.log(req.body);
+    // res.send('post test');
+    var data = req.body.arguments;
+    // var data = {
+    //     arguments: req.body.arguments
+    // }
+    // data = JSON.stringify(data);
+    var option = {
+        method:"POST",
+        host: "localhost",
+        port: 3001,
+        path: "/evaluation",
+        headers:{
+            "Content-Type":"application/json",
+            "Content-Length": data.length
+        }
+    };
+
+    var request = http.request(option, function (response) {
+        response.on("data", function (chunk) {
+            res.send(chunk.toString());
+        });
+        // res.send(response);
+    });
+    request.write(data + "\n");
+    request.end();
+    // res.redirect(308, "http://localhost:3001");
+});
 
 app.listen(3000);
 console.log("[APP]HTTP服务器开始侦听");

@@ -44,13 +44,35 @@
         var SOURCE_URL = type === "cloud" ? cloudUrl : url;
         // SOURCE_URL = 'https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd';
 
-        //使用全局变量记录一些数据
+        //使用全局变量记录一些数据 #1
         window.USER_DEFINED = {};
         window.USER_DEFINED.RECORD = {};
         window.USER_DEFINED.RECORD.config = {
             interval: 1
         };
         window.USER_DEFINED.RECORD.data = [];
+
+        // #2 评价用变量
+        window.PlayTrace = {
+            time:[],
+            buffer:[],
+            index:[],
+            video_bitrate:[],
+            audio_bitrate:[],
+        }
+        window.PlayConfig = {
+            disRes:1920*1080,
+            codResDic:[],
+            fps:30,
+            startup:2000
+        }
+        window.BitrateList = {}
+        window.BufferTrace = {
+            position:[],
+            duration:[]
+        }
+        window.Metrics = {}
+        window.PageLoaded = new Date();
 
     </script>
     <!--<script src="/js/abr/ServerRule.js"></script>-->
@@ -533,7 +555,7 @@
       </div>
 
         <!-- CHARTING -->
-       <div class="chart-panel">
+       <div class="chart-panel" style="display: none">
             <div class="chart-controls">
                 <div class="btn-group">
                     <button id="disable-chart-btn" class="btn btn-primary" ng-click="clearChartData()" ng-cloak>Clear</button>
@@ -566,10 +588,50 @@
         <!--</div>-->
     <!--</div>-->
     <script src="/js/echarts.min.js"></script>
-    <div id="echart-test" style="width: 600px;height: 400px">
-
+    <!--播放状态显示-->
+    <div id="echart-test" style="width: 1000px;height: 400px">
     </div>
+    <!--评价指标显示-->
+    <div>
+        <button id="eval-update" class="btn btn-success" style="margin: 10px 5px 15px 20px">Update</button>
+        <table id="table-evaluation" class="table table-bordered" style="margin: 10px 5px 15px 20px">
+            <tr>
+                <td>指标</td>
+                <td>数值</td>
+            </tr>
+            <tr>
+                <td>QoE</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>平均视频码率</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>平均音频码率</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>卡顿次数</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>卡顿时长</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>卡顿频率</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>卡顿比例</td>
+                <td>0</td>
+            </tr>
+        </table>
+    </div>
+
     <script type="text/javascript">
+        // # 图表绘制部分
         var myChart = echarts.init(document.getElementById('echart-test'));
         // 指定图表的配置项和数据
         var xdata = [];
@@ -634,7 +696,7 @@
                 // data1.push({
                 //     value: [data_obj.time, data_obj.buffer]
                 // })
-                xdata.push(data_obj.time);
+                xdata.push(data_obj.time.toFixed(2));
                 data.push(data_obj.bitrate);
                 data1.push(data_obj.buffer);
                 myChart.setOption({
@@ -650,6 +712,117 @@
             }
         }, 1000)
 
+
+
+        var evalButton = document.getElementById("eval-update");
+        evalButton.addEventListener("click",function () {
+            requestQoe();
+        });
+
+        function requestQoe() {
+            // #1  play trace
+            let play_trace = window.PlayTrace;
+
+            // #2 rebuffer
+            let buffer_level_arr = window.Metrics.BufferLevel;
+            let buffer_state_arr = window.Metrics.BufferState;
+            // alert(buffer_level_arr);
+            // alert(buffer_level_arr[0].t);
+            let startup_time = buffer_level_arr[0].t;
+            let startup_delay_ms = startup_time - window.PageLoaded;
+            // alert(startup_delay_ms);
+            // alert(buffer_level_arr[0].level);
+            let stall_rec = [];
+            let i = 0;
+            let start_pos = 0;
+            let stall_dur = 0;
+            let last_state = '';
+            // 记录卡顿出现的开始和持续索引
+            while (i < buffer_state_arr.length) {
+                if(last_state !== "bufferStalled" && buffer_state_arr[i].state === "bufferStalled"){
+                    // 开始计数
+                    start_pos = i;
+                    stall_dur = 1;
+                }else if(last_state === "bufferStalled" && buffer_state_arr[i].state === "bufferStalled"){
+                    // 计数增加
+                    stall_dur++;
+                }else if(last_state === "bufferStalled" && buffer_state_arr[i].state !== "bufferStalled"){
+                    // 计数清理 存储
+                    stall_rec.push({
+                        pus: start_pos,
+                        dur: stall_dur
+                    })
+                    start_pos = 0;
+                    stall_dur = 0;
+                }
+
+                if(i === buffer_state_arr.length - 1){
+                    if(last_state === "bufferStalled" && buffer_state_arr[i].state === "bufferStalled"){
+                        // 将最后一次stall 记录
+                        stall_rec.push({
+                            pus: start_pos,
+                            dur: stall_dur
+                        })
+                    }
+                }
+                last_state = buffer_state_arr[i].state;
+                i++;
+            }
+            // alert(stall_rec[0].dur);
+            // 从bufferLevel数组中获取卡顿的时间和持续时间
+            for (let j = 0; j < stall_rec.length; j++) {
+                let begin_i = stall_rec[j].pos;
+                let end_i = begin_i + stall_rec[j].dur - 1;
+                let start_t = buffer_level_arr[begin_i].t;
+                let end_t = buffer_level_arr[end_i].t;
+
+                let begin_pos = start_t - startup_time;
+                let duration = end_t - start_t;
+                window.BufferTrace.position.push(begin_pos / 1000);
+                window.BufferTrace.duration.push(duration / 1000);
+            }
+
+            // 综合参数
+            var arguments = {
+                play_config:{
+                    bitrate_list:window.BitrateList,
+                    startup_delay: startup_time
+                },
+                play_trace:play_trace,
+                stall_record:window.BufferTrace
+            }
+
+            $.post(
+                "/evaluation",
+                {
+                    arguments:JSON.stringify(arguments)
+                },
+                function (result) {
+                    alert(result);
+                    requestCallback(result);
+                }
+            )
+        }
+
+        function requestCallback(result) {
+            var evalRes = JSON.parse(result)
+
+            var evalTable = document.getElementById("table-evaluation");
+            var qoeElem = evalTable.rows[1].cells[1];
+            var vbrElem = evalTable.rows[2].cells[1];
+            var abrElem = evalTable.rows[3].cells[1];
+            var rbCountElem = evalTable.rows[4].cells[1];
+            var stallDur = evalTable.rows[5].cells[1];
+            var rbFreqElem = evalTable.rows[6].cells[1];
+            var stallRatio = evalTable.rows[7].cells[1];
+            qoeElem.innerHTML = evalRes["QoE"].toFixed(2);
+            vbrElem.innerHTML = evalRes["aver_vbr"].toFixed(2);
+            abrElem.innerHTML = evalRes["aver_abr"].toFixed(2);
+            rbCountElem.innerHTML = evalRes["rebuff_count"];
+            stallDur.innerHTML = evalRes["stall_dur"];
+            rbFreqElem.innerHTML = evalRes["rebuff_freq"].toFixed(2);
+            stallRatio.innerHTML = evalRes["stall_ratio"].toFixed(2);
+        }
 
     </script>
 </div>

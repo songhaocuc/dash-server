@@ -344,6 +344,9 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
     $scope.player.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, function (e) { /* jshint ignore:line */
         stopMetricsInterval();
 
+        // add by songhao
+        record_config();
+
         $scope.videoQualities = $scope.player.getBitrateInfoListFor('video');
         $scope.chartCount = 0;
         $scope.metricsTimer = setInterval(function () {
@@ -794,7 +797,16 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
                     latency: httpMetrics.latency[type].average.toFixed(2),
                     ratio: httpMetrics.ratio[type].average.toFixed(2)
                 });
+                //# 2
+                window.PlayTrace.time.push(getTimeForPlot());
+                window.PlayTrace.video_bitrate.push(bitrate);
+                window.PlayTrace.buffer.push(bufferLevel);
+                window.PlayTrace.index.push(index);
+
+            }else if(type === "audio"){
+                window.PlayTrace.audio_bitrate.push(bitrate);
             }
+            window.Metrics = metrics;
             //console.log(window.USER_DEFINED.RECORD.data);
         }
     }
@@ -815,6 +827,13 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
             }
         }
     };
+
+    // add by songhao
+    function record_config(){
+        // alert("!!!!!!!!!!!!!");
+        // console.log($scope.player.getBitrateInfoListFor('video'))
+        window.BitrateList = $scope.player.getBitrateInfoListFor('video')
+    }
 
 
     ////////////////////////////////////////
